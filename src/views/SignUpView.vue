@@ -1,16 +1,16 @@
 <template>
-    <div class="login">
-        <h3>Sign In</h3>
+    <div class="signup">
+        <p>Let's create a new account!</p>
         <input type="text" placeholder="Email" /><br />
-        <input type="password" /><br />
-        <button>Connection</button>
-        <p>You don't have an account? You can <router-link to="/signup">create one</router-link></p>
+        <input type="password" placeholder="Password" /><br />
+        <button>Sign Up</button>
+        <span>go back to <router-link to="/login">login</router-link></span>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'login',
+    name: 'signUp',
     data() {
         return {};
     },
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped>
-.login {
+.sign-up {
     margin-top: 40px;
 }
 input {
@@ -32,12 +32,9 @@ button {
     width: 10%;
     cursor: pointer;
 }
-p {
-    margin-top: 40px;
-    font-size: 13px;
-}
-p a {
-    text-decoration: underline;
-    cursor: pointer;
+span {
+    display: block;
+    margin-top: 20px;
+    font-size: 11px;
 }
 </style>
