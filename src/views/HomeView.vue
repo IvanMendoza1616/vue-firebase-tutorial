@@ -1,20 +1,17 @@
 <template>
     <div class="home">
-        <HelloWorld msg="Welcome to Your Vue.js App" />
+        <h1>Reading Database</h1>
+        <button @click="view">View</button>
         <button @click="logout">Logout</button>
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
 import firebase from 'firebase';
 
 export default {
     name: 'HomeView',
-    components: {
-        HelloWorld,
-    },
     methods: {
         logout: function () {
             firebase
@@ -23,6 +20,15 @@ export default {
                 .then(() => {
                     this.$router.replace('login');
                 });
+        },
+        view: function () {
+            let db = firebase.database().ref('answers');
+            db.on('value', function (snapshot) {
+                snapshot.forEach(function (childSnapshot) {
+                    let childData = childSnapshot.val();
+                    console.log(childData);
+                });
+            });
         },
     },
 };

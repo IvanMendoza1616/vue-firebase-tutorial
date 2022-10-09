@@ -14,12 +14,22 @@ const firebaseConfig = {
     appId: '1:902282372531:web:eac6423460d119fd41d7c6',
     measurementId: 'G-03N81CXEDV',
 };
-
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 firebase.auth().onAuthStateChanged(() => {
     if (!app) {
         app = createApp(App).use(router).mount('#app');
+        //const db = firebase.database().ref('answers');
     }
 });
+/*
+db.on('value', function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                let childData = childSnapshot.val();
+                console.log(childData);
+            });
+        });
+*/
+
+//export const db = firebase.database().ref('answers');
