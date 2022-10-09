@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <h1>Reading Database</h1>
+        <h1>Welcome to the Firebase Database</h1>
         <button @click="view">View</button>
         <button @click="logout">Logout</button>
         <div class="info">
@@ -54,42 +54,42 @@ export default {
                     this.quest.push(`Q ${question}`);
                     i++;
                 });
+                let trace1 = {
+                    x: this.ansRight,
+                    y: this.quest,
+                    name: 'Wrong',
+                    orientation: 'h',
+                    marker: {
+                        color: 'rgba(55,128,191,1)',
+                        width: 10,
+                    },
+                    type: 'bar',
+                };
+
+                let trace2 = {
+                    x: this.ansWrong,
+                    y: this.quest,
+                    name: 'Correct',
+                    orientation: 'h',
+                    type: 'bar',
+                    marker: {
+                        color: 'rgba(255,153,51,1)',
+                        width: 10,
+                    },
+                };
+
+                let data = [trace1, trace2];
+
+                let layout = {
+                    title: 'Right and Wrong Answers',
+                    barmode: 'stack',
+                    autosize: false,
+                    width: 1000,
+                    height: 5000,
+                };
+
+                Plotly.newPlot('plotly', data, layout);
             });
-            let trace1 = {
-                x: this.ansRight,
-                y: this.quest,
-                name: 'Wrong',
-                orientation: 'h',
-                marker: {
-                    color: 'rgba(55,128,191,1)',
-                    width: 10,
-                },
-                type: 'bar',
-            };
-
-            let trace2 = {
-                x: this.ansWrong,
-                y: this.quest,
-                name: 'Correct',
-                orientation: 'h',
-                type: 'bar',
-                marker: {
-                    color: 'rgba(255,153,51,1)',
-                    width: 10,
-                },
-            };
-
-            let data = [trace1, trace2];
-
-            let layout = {
-                title: 'Right and Wrong Answers',
-                barmode: 'stack',
-                autosize: false,
-                width: 1000,
-                height: 5000,
-            };
-
-            Plotly.newPlot('plotly', data, layout);
         },
     },
 };
@@ -102,5 +102,9 @@ export default {
 #plotly {
     display: flex;
     justify-content: center;
+}
+button {
+    padding: 0.5rem 1rem;
+    margin: 1rem;
 }
 </style>
