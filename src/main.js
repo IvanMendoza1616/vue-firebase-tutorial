@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import firebase from 'firebase';
 
-createApp(App).use(router).mount('#app');
+let app = '';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyAy8pWVxIVZ2I4agpiqQb2fH0z-64dOdSY',
@@ -17,3 +17,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged(() => {
+    if (!app) {
+        app = createApp(App).use(router).mount('#app');
+    }
+});
